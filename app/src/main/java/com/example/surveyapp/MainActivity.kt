@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this, "${username.text} has successfully made an account.", Toast.LENGTH_SHORT).show()
                 //Push username and password to the database
-                //Intent stuff goes here
+                
                 fun SignIn(view: View) {
                     val intent = Intent(this, StudentHome::class.java).apply {
                     }
