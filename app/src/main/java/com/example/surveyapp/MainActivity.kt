@@ -1,5 +1,6 @@
 package com.example.surveyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,8 +48,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "${username.text} has successfully made an account.", Toast.LENGTH_SHORT).show()
                 //Push username and password to the database
                 //Intent stuff goes here
-                fun SignI(view: View) {
-
+                fun SignIn(view: View) {
+                    val intent = Intent(this, StudentHome::class.java).apply {
+                    }
+                    startActivity(intent)
                 }
             }
         }
