@@ -13,47 +13,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val login =  findViewById<Button>(R.id.buttonLogin)
-        val signup = findViewById<Button>(R.id.buttonSignUp)
-        val username = findViewById<EditText>(R.id.editTextUsername)
-        val password = findViewById<EditText>(R.id.editTextPassword)
-
-        login.setOnClickListener {
-
-            if(username.text.isNullOrBlank()||password.text.isNullOrBlank()) {
-                Toast.makeText(this, "Please fill in the required fields.", Toast.LENGTH_SHORT).show()
-            }
-
-            /*else if(user does not exist) {
-                Toast = "User doesn't exist."
-            }*/
-
-            /*else if(password != user's password) {
-                Toast = "Password is incorrect."
-            }*/
-
-            else {
-                Toast.makeText(this, "${username.text} has successfully logged in.", Toast.LENGTH_SHORT).show()
-                //Intent stuff goes here
-            }
+        fun login (view: View) {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
         }
 
-        signup.setOnClickListener {
-
-            if(username.text.isNullOrBlank()||password.text.isNullOrBlank()) {
-                Toast.makeText(this, "Please fill in the required fields.", Toast.LENGTH_SHORT).show()
-            }
-
-            else {
-                Toast.makeText(this, "${username.text} has successfully made an account.", Toast.LENGTH_SHORT).show()
-                //Push username and password to the database
-                //Intent stuff goes here
-                fun SignIn(view: View) {
-                    val intent = Intent(this, StudentHome::class.java).apply {
-                    }
-                    startActivity(intent)
-                }
-            }
+        fun signup (view: View) {
+            val intent2 = Intent(this, SignUp::class.java)
+            startActivity(intent2)
         }
     }
 }
