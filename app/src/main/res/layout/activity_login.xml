@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".Login">
+    tools:context=".LoginActivity">
 
     <Button
         android:id="@+id/buttonLogin"
@@ -13,6 +13,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="60dp"
         android:text="Login"
+        android:textSize="20sp"
         app:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
