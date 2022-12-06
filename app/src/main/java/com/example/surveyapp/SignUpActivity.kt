@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 
@@ -21,8 +22,20 @@ class SignUpActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.editTextNewUsername).text.toString()
         val password = findViewById<EditText>(R.id.editTextNewPassword).text.toString()
         val rePassword = findViewById<EditText>(R.id.editTextRePassword).text.toString()
+        var isAdmin = 0
         val intent = Intent(this, StudentHomeActivity::class.java).apply {
         }
+
+        val adminCheck = findViewById<CheckBox>(R.id.checkBoxAdmin)
+
+        if (adminCheck.isChecked) {
+            isAdmin = 1
+        }
+
+        else {
+            isAdmin = 0
+        }
+
 
         when {
             username.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
