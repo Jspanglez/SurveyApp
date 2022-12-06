@@ -13,46 +13,25 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-
-
     }
-        /*signup.setOnClickListener {
-            when {
-                username.text.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
-                password.text.isNullOrBlank() -> Toast.makeText(this, "Please enter a password.", Toast.LENGTH_SHORT).show()
-                rePassword.text.isNullOrBlank() -> Toast.makeText(this, "Please re-enter your password.", Toast.LENGTH_SHORT).show()
-                password.text.toString() != rePassword.text.toString() -> Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show()
-
-                else -> {
-                    Toast.makeText(this, "${username.text} has successfully made an account.", Toast.LENGTH_SHORT).show()
-                    //Push username and password to the database
-
-                    fun signUpButton(view: View) {
-                        val intent = Intent(this, StudentHomeActivity::class.java).apply {
-                            startActivity(intent)
-                        }
-                    }
-                }
-            }
-        }*/
 
     fun onClickButton(view: View) {
 
         //val signup = findViewById<Button>(R.id.buttonSignUp)
-        val username = findViewById<EditText>(R.id.editTextNewUsername)
-        val password = findViewById<EditText>(R.id.editTextNewPassword)
-        val rePassword = findViewById<EditText>(R.id.editTextRePassword)
+        val username = findViewById<EditText>(R.id.editTextNewUsername).text.toString()
+        val password = findViewById<EditText>(R.id.editTextNewPassword).text.toString()
+        val rePassword = findViewById<EditText>(R.id.editTextRePassword).text.toString()
         val intent = Intent(this, StudentHomeActivity::class.java).apply {
         }
 
         when {
-            username.text.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
-            password.text.isNullOrBlank() -> Toast.makeText(this, "Please enter a password.", Toast.LENGTH_SHORT).show()
-            rePassword.text.isNullOrBlank() -> Toast.makeText(this, "Please re-enter your password.", Toast.LENGTH_SHORT).show()
-            password.text.toString() != rePassword.text.toString() -> Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show()
+            username.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
+            password.isNullOrBlank() -> Toast.makeText(this, "Please enter a password.", Toast.LENGTH_SHORT).show()
+            rePassword.isNullOrBlank() -> Toast.makeText(this, "Please re-enter your password.", Toast.LENGTH_SHORT).show()
+            password != rePassword -> Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show()
 
             else -> {
-                Toast.makeText(this, "${username.text} has successfully made an account.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
                 //Push username and password to the database
 
                 startActivity(intent)
