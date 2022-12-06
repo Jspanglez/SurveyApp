@@ -12,15 +12,17 @@
         android:id="@+id/textView"
         android:layout_width="375dp"
         android:layout_height="75dp"
+        android:fontFamily="sans-serif-light"
         android:text="Welcome"
         android:textAlignment="center"
+        android:textColor="@color/light_gray"
         android:textSize="50sp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <Button
         android:id="@+id/buttonLg"
@@ -50,4 +52,21 @@
         app:layout_constraintStart_toStartOf="@+id/buttonLg"
         app:layout_constraintTop_toBottomOf="@+id/buttonLg"
         app:layout_constraintVertical_bias="0.122" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="72dp"
+        android:layout_height="73dp"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:layout_editor_absoluteX="323dp"
+        tools:layout_editor_absoluteY="40dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
