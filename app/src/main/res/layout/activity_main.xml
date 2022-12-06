@@ -53,20 +53,4 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonLg"
         app:layout_constraintVertical_bias="0.122" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="72dp"
-        android:layout_height="73dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="72dp"
-        android:layout_height="73dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        tools:layout_editor_absoluteX="323dp"
-        tools:layout_editor_absoluteY="40dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
