@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.example.surveyapp.Model.DataBaseHelper
+import com.example.surveyapp.Model.User
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -44,10 +46,18 @@ class SignUpActivity : AppCompatActivity() {
             password != rePassword -> Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show()
 
             else -> {
-                Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
                 //Push username and password to the database
+                val newUser = User(-1, username, password, isAdmin)
+                val myDatabase = DataBaseHelper(this)
+                val result = myDatabase.addUser(newUser)
 
-                startActivity(intent)
+                when(result) {
+                    1 -> {
+                        Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
+                        startActivity(intent)
+                    }
+                    -3 -> Toast.makeText(this, "The username '$username' already exists.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

@@ -11,11 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper
 private val DataBaseName = "surveyDatabase.db"
 private val ver : Int = 1
 
-class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName, null, ver) {
+class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName, null, ver) {
 
     // User Table
-    private val TableName = "Users"
-
+    private val tableName = "Users"
     private val Column_UserID = "UserID"
     private val Column_Username = "username"
     private val Column_Password = "password"
@@ -23,14 +22,20 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
     // Create the database
     override fun onCreate(db: SQLiteDatabase?) {
+
         try {
-            val sqlCreateStatement: String = "CREATE TABLE " + TableName + " ( " + Column_UserID +
+            val sqlCreateStatement: String = "CREATE TABLE IF NOT EXISTS" + tableName + " ( " + Column_UserID +
                     " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_Username + " TEXT NOT NULL UNIQUE, " +
                     Column_Password + " TEXT NOT NULL, " + Column_isAdmin + " INTEGER NOT NULL DEFAULT 0 )"
 
             db?.execSQL(sqlCreateStatement)
         }
         catch (e: SQLiteException) {}
+    }
+
+    // This is called if the database ver. is changed
+    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
+        TODO("Not yet implemented")
     }
 
     private fun checkUsername(user: User): Int {
@@ -45,7 +50,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
 
         val username = user.username.lowercase()
 
-        val sqlStatement = "SELECT * FROM $TableName WHERE $Column_Username = ?"
+        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_Username = ?"
         val param = arrayOf(username)
         val cursor: Cursor =  db.rawQuery(sqlStatement,param)
 
@@ -54,7 +59,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
             val n = cursor.getInt(0)
             cursor.close()
             db.close()
-            return -3 // error the user name already exists
+            return -3 // Error: the username already exists
         }
 
         cursor.close()
@@ -76,7 +81,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         cv.put(Column_Password, user.password)
         cv.put(Column_isAdmin, user.isAdmin)
 
-        val success = db.insert(TableName, null, cv)
+        val success = db.insert(tableName, null, cv)
 
         db.close()
 
@@ -85,6 +90,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, DataBaseName,
         else
             return 1
     }
+
+
 
 
 }
