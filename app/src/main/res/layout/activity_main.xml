@@ -26,8 +26,8 @@
 
     <Button
         android:id="@+id/buttonLg"
-        android:layout_width="221dp"
-        android:layout_height="59dp"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
         android:onClick="login"
         android:text="Login"
         android:textSize="20sp"
@@ -40,8 +40,8 @@
 
     <Button
         android:id="@+id/buttonSu"
-        android:layout_width="221dp"
-        android:layout_height="59dp"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
         android:onClick="sign"
         android:text="Sign Up"
         android:textSize="20sp"
