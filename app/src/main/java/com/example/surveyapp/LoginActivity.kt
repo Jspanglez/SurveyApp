@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import com.example.surveyapp.Model.DataBaseHelper
+import com.example.surveyapp.Model.User
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,18 +21,40 @@ class LoginActivity : AppCompatActivity() {
 
         val username = findViewById<EditText>(R.id.editTextUsername).text.toString()
         val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
-        val intent = Intent(this, StudentHomeActivity::class.java).apply {
+        val intentStudent = Intent(this, StudentHomeActivity::class.java).apply {
         }
+        val intentAdmin = Intent(this, AdminHomeActivity::class.java).apply {
+        }
+
+        /*val adminCheck = findViewById<CheckBox>(R.id.checkBoxAdmin)
+        admin = adminCheck.isChecked*/
 
         when {
             username.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
             password.isNullOrBlank() -> Toast.makeText(this, "Please enter a password.", Toast.LENGTH_SHORT).show()
-            //password.text != user's password -> Toast.makeText(this, "Password is incorrect.", Toast.LENGTH_SHORT).show()
-            //username is not in database -> Toast.makeText(this, "User does not exist.", Toast.LENGTH_SHORT).show()
 
             else -> {
-                Toast.makeText(this, "$username has successfully logged in.", Toast.LENGTH_SHORT).show()
-                startActivity(intent)
+                val myDatabase = DataBaseHelper(this)
+                val result = myDatabase.getUser(User(-1, username, password, false))
+                val checkAdmin = myDatabase.getAdmin(User(-1, username, password, false))
+                val checkStudent = myDatabase.getStudent(User(-1, username, password, false))
+
+                when(result) {
+                    -1 -> Toast.makeText(this, "Username or password is incorrect.", Toast.LENGTH_SHORT).show()
+
+                    else -> {
+
+                        if(checkAdmin == 1) {
+                            Toast.makeText(this, "Admin has successfully logged in.", Toast.LENGTH_SHORT).show()
+                            startActivity(intentAdmin)
+                        }
+
+                        else if(checkAdmin == -4) {
+                            Toast.makeText(this, "Student has successfully logged in.", Toast.LENGTH_SHORT).show()
+                            startActivity(intentStudent)
+                        }
+                    }
+                }
             }
         }
     }
