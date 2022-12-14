@@ -1,4 +1,4 @@
 package com.example.surveyapp.Model
 
-class Survey {
+data class Survey(val SurveyID: Int, val title: String, val startDate: String, val endDate: String) {
 }
