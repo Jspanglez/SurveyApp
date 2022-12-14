@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.TableLayout
 
 /* Database Config*/
 private val DataBaseName = "surveyDatabase.db"
@@ -88,11 +89,93 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         if (success.toInt() == -1)
             return success.toInt() //Error, adding new user
         else
-            return 1
+            return 1 //Add the user
     }
 
+    fun getUser(user: User): Int {
 
+        val db: SQLiteDatabase
+        try {
+            db = this.readableDatabase
+        }
+        catch (e: SQLiteException) {
+            return -2
+        }
 
+        val userName = user.username.lowercase()
+        val userPassword = user.password
+
+        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_Username = ? AND $Column_Password = ?"
+        val param = arrayOf(userName, userPassword)
+        val cursor: Cursor = db.rawQuery(sqlStatement, param)
+
+        if(cursor.moveToFirst()) {
+            // The user is found
+            val n = cursor.getInt(0)
+            cursor.close()
+            db.close()
+            return n
+        }
+
+        cursor.close()
+        db.close()
+        return -1 //The user is not found
+
+    }
+
+    fun getAdmin(user: User): Int {
+        val db: SQLiteDatabase
+        val isAdmin = user.isAdmin
+
+        try {
+            db = this.readableDatabase
+        }
+        catch (e: SQLiteException) {
+            return -2
+        }
+
+        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_isAdmin = 1"
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if(cursor.moveToFirst()) {
+            // An admin is found
+            //val n = cursor.getInt(0)
+            cursor.close()
+            db.close()
+            return 1
+        }
+
+        cursor.close()
+        db.close()
+        return -4
+    }
+
+    fun getStudent(user: User): Int {
+        val db: SQLiteDatabase
+        val isAdmin = user.isAdmin
+
+        try {
+            db = this.readableDatabase
+        }
+        catch (e: SQLiteException) {
+            return -2
+        }
+
+        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_isAdmin = 0"
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if(cursor.moveToFirst()) {
+            // A student is found
+            val n = cursor.getInt(0)
+            cursor.close()
+            db.close()
+            return 2
+        }
+
+        cursor.close()
+        db.close()
+        return -4
+    }
 
 }
 
