@@ -15,21 +15,51 @@ private val ver : Int = 1
 class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName, null, ver) {
 
     // User Table
-    private val tableName = "Users"
+    private val userTable = "Users"
     private val Column_UserID = "UserID"
     private val Column_Username = "username"
     private val Column_Password = "password"
     private val Column_isAdmin = "isAdmin"
 
+    // Survey Table
+    private val surveyTable = "Surveys"
+    private val Column_SurveyID = "SurveyID"
+    private val Column_SurveyTitle = "surveyTitle"
+    private val Column_StartDate = "startDate"
+    private val Column_EndDate = "endDate"
+
+    // Questions Table
+    private val questionTable = "Questions"
+    private val Column_QuestionID = "QuestionID"
+    private val Column_QuestionText = "questionText"
+
+    // Answers Table
+    private val answerTable = "Answers"
+    private val Column_AnswerID = "AnswerID"
+    private val Column_AnswerText = "answerText"
+
     // Create the database
     override fun onCreate(db: SQLiteDatabase?) {
 
         try {
-            val sqlCreateStatement: String = "CREATE TABLE IF NOT EXISTS" + tableName + " ( " + Column_UserID +
-                    " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_Username + " TEXT NOT NULL UNIQUE, " +
-                    Column_Password + " TEXT NOT NULL, " + Column_isAdmin + " INTEGER NOT NULL DEFAULT 0 )"
+            val sqlCreateStatementUser: String =
+                "CREATE TABLE IF NOT EXISTS" + userTable + " ( " + Column_UserID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_Username + " TEXT NOT NULL UNIQUE, " +
+                Column_Password + " TEXT NOT NULL, " + Column_isAdmin + " INTEGER NOT NULL DEFAULT 0 )"
 
-            db?.execSQL(sqlCreateStatement)
+            val sqlCreateStatementSurvey: String =
+                "CREATE TABLE IF NOT EXISTS" + surveyTable + " ( " + Column_SurveyID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_SurveyTitle + " TEXT NOT NULL, " +
+                Column_StartDate + " TEXT NOT NULL, " + Column_EndDate + " TEXT )"
+
+            val sqlCreateStatementQuestions: String =
+                "CREATE TABLE IF NOT EXISTS" + questionTable + " ( " + Column_QuestionID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_QuestionText + " TEXT, " + Column_SurveyID +
+                " INTEGER FOREIGN KEY )"
+
+            db?.execSQL(sqlCreateStatementUser)
+            db?.execSQL(sqlCreateStatementSurvey)
+            db?.execSQL(sqlCreateStatementQuestions)
         }
         catch (e: SQLiteException) {}
     }
@@ -51,7 +81,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
 
         val username = user.username.lowercase()
 
-        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_Username = ?"
+        val sqlStatement = "SELECT * FROM $userTable WHERE $Column_Username = ?"
         val param = arrayOf(username)
         val cursor: Cursor =  db.rawQuery(sqlStatement,param)
 
@@ -82,7 +112,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         cv.put(Column_Password, user.password)
         cv.put(Column_isAdmin, user.isAdmin)
 
-        val success = db.insert(tableName, null, cv)
+        val success = db.insert(userTable, null, cv)
 
         db.close()
 
@@ -105,7 +135,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         val userName = user.username.lowercase()
         val userPassword = user.password
 
-        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_Username = ? AND $Column_Password = ?"
+        val sqlStatement = "SELECT * FROM $userTable WHERE $Column_Username = ? AND $Column_Password = ?"
         val param = arrayOf(userName, userPassword)
         val cursor: Cursor = db.rawQuery(sqlStatement, param)
 
@@ -134,7 +164,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
             return -2
         }
 
-        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_isAdmin = 1"
+        val sqlStatement = "SELECT * FROM $userTable WHERE $Column_isAdmin = 1"
         val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
         if(cursor.moveToFirst()) {
@@ -161,7 +191,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
             return -2
         }
 
-        val sqlStatement = "SELECT * FROM $tableName WHERE $Column_isAdmin = 0"
+        val sqlStatement = "SELECT * FROM $userTable WHERE $Column_isAdmin = 0"
         val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
         if(cursor.moveToFirst()) {
