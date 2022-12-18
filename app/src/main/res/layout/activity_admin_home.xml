@@ -44,6 +44,7 @@
         android:layout_marginStart="4dp"
         android:backgroundTint="@color/green"
         android:fontFamily="sans-serif-medium"
+        android:onClick="createBtn"
         android:text="Create Survey"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
