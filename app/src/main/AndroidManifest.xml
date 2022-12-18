@@ -13,6 +13,13 @@
         android:theme="@style/Theme.SurveyApp"
         tools:targetApi="31">
         <activity
+            android:name=".CreateSurveyActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditSurveyActivity"
             android:exported="false">
             <meta-data
@@ -20,7 +27,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateSurveyActivity"
+            android:name=".CreateQuestionsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
