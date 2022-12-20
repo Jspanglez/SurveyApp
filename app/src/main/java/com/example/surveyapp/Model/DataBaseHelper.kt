@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.TableLayout
 
 /* Database Config*/
 private val DataBaseName = "surveyDatabase.db"
@@ -205,6 +204,42 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         cursor.close()
         db.close()
         return -4
+    }
+
+    fun addSurvey(survey: Survey): Int {
+
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+        cv.put(Column_SurveyTitle, survey.title)
+        cv.put(Column_StartDate, survey.startDate)
+        cv.put(Column_EndDate, survey.endDate)
+
+        val success = db.insert(surveyTable, null, cv)
+
+        db.close()
+
+        if (success.toInt() == -1)
+            return success.toInt() //Error, adding new survey
+        else
+            return 1 //Add the survey
+    }
+
+    fun addQuestions(questions: Questions): Int {
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+        cv.put(Column_QuestionText, questions.questionText)
+        cv.put(Column_SurveyID, questions.SurveyID)
+
+        val success = db.insert(questionTable, null, cv)
+
+        db.close()
+
+        if (success.toInt() == -1)
+            return success.toInt() //Error, adding new question
+        else
+            return 1 //Add the question
     }
 
 }
