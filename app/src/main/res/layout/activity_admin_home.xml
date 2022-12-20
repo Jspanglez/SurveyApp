@@ -25,22 +25,22 @@
     <Button
         android:id="@+id/buttonEdit"
         android:layout_width="175dp"
-        android:layout_height="60dp"
-        app:backgroundTint="@color/blue"
+        android:layout_height="64dp"
         android:fontFamily="sans-serif-medium"
         android:text="Edit Survey"
         android:textSize="16sp"
+        app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.935" />
 
     <Button
         android:id="@+id/buttonNew"
         android:layout_width="175dp"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:layout_marginStart="4dp"
         android:backgroundTint="@color/green"
         android:fontFamily="sans-serif-medium"
@@ -52,6 +52,6 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.935" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
