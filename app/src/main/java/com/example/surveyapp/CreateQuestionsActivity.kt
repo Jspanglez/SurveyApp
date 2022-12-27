@@ -39,6 +39,7 @@ class CreateQuestionsActivity : AppCompatActivity() {
         val question10 = findViewById<EditText>(R.id.editTextQ10).text.toString()
 
         when {
+
             question1.isNullOrBlank() -> Toast.makeText(this, "Please enter 10 questions.", Toast.LENGTH_SHORT).show()
             question2.isNullOrBlank() -> Toast.makeText(this, "Please enter 10 questions.", Toast.LENGTH_SHORT).show()
             question3.isNullOrBlank() -> Toast.makeText(this, "Please enter 10 questions.", Toast.LENGTH_SHORT).show()
@@ -51,74 +52,76 @@ class CreateQuestionsActivity : AppCompatActivity() {
             question10.isNullOrBlank() -> Toast.makeText(this, "Please enter 10 questions.", Toast.LENGTH_SHORT).show()
 
             else -> {
-                val newSurvey = Survey(-1, surveyTitle, startDate, endDate)
-                val newQuestion1 = Questions(-1, question1, newSurvey.SurveyID)
-                val newQuestion2 = Questions(-1, question2, newSurvey.SurveyID)
-                val newQuestion3 = Questions(-1, question3, newSurvey.SurveyID)
-                val newQuestion4 = Questions(-1, question4, newSurvey.SurveyID)
-                val newQuestion5 = Questions(-1, question5, newSurvey.SurveyID)
-                val newQuestion6 = Questions(-1, question6, newSurvey.SurveyID)
-                val newQuestion7 = Questions(-1, question7, newSurvey.SurveyID)
-                val newQuestion8 = Questions(-1, question8, newSurvey.SurveyID)
-                val newQuestion9 = Questions(-1, question9, newSurvey.SurveyID)
-                val newQuestion10 = Questions(-1, question10, newSurvey.SurveyID)
+                val newSurvey = Survey(1, surveyTitle, startDate, endDate)
+                val newQuestion1 = Questions(1, question1, newSurvey.SurveyID)
+                val newQuestion2 = Questions(1, question2, newSurvey.SurveyID)
+                val newQuestion3 = Questions(1, question3, newSurvey.SurveyID)
+                val newQuestion4 = Questions(1, question4, newSurvey.SurveyID)
+                val newQuestion5 = Questions(1, question5, newSurvey.SurveyID)
+                val newQuestion6 = Questions(1, question6, newSurvey.SurveyID)
+                val newQuestion7 = Questions(1, question7, newSurvey.SurveyID)
+                val newQuestion8 = Questions(1, question8, newSurvey.SurveyID)
+                val newQuestion9 = Questions(1, question9, newSurvey.SurveyID)
+                val newQuestion10 = Questions(1, question10, newSurvey.SurveyID)
                 //val questions = arrayOf(newQuestion1, newQuestion2, newQuestion3, newQuestion4, newQuestion5, newQuestion6, newQuestion7, newQuestion8, newQuestion9, newQuestion10)
                 val myDatabase = DataBaseHelper(this)
                 val addNewSurvey = myDatabase.addSurvey(newSurvey)
-                val addNewQuestion1 = myDatabase.addQuestions(newQuestion1)
-                val addNewQuestion2 = myDatabase.addQuestions(newQuestion2)
-                val addNewQuestion3 = myDatabase.addQuestions(newQuestion3)
-                val addNewQuestion4 = myDatabase.addQuestions(newQuestion4)
-                val addNewQuestion5 = myDatabase.addQuestions(newQuestion5)
-                val addNewQuestion6 = myDatabase.addQuestions(newQuestion6)
-                val addNewQuestion7 = myDatabase.addQuestions(newQuestion7)
-                val addNewQuestion8 = myDatabase.addQuestions(newQuestion8)
-                val addNewQuestion9 = myDatabase.addQuestions(newQuestion9)
-                val addNewQuestion10 = myDatabase.addQuestions(newQuestion10)
+                myDatabase.addQuestions(newQuestion1)
+                myDatabase.addQuestions(newQuestion2)
+                myDatabase.addQuestions(newQuestion3)
+                myDatabase.addQuestions(newQuestion4)
+                myDatabase.addQuestions(newQuestion5)
+                myDatabase.addQuestions(newQuestion6)
+                myDatabase.addQuestions(newQuestion7)
+                myDatabase.addQuestions(newQuestion8)
+                myDatabase.addQuestions(newQuestion9)
+                myDatabase.addQuestions(newQuestion10)
 
                 when(addNewSurvey) {
                     1 -> Toast.makeText(this, "New survey for $surveyTitle has been created.", Toast.LENGTH_SHORT).show()
+
+                    -1 -> Toast.makeText(this, "Error adding survey.", Toast.LENGTH_SHORT).show()
                 }
 
-                when(addNewQuestion1) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                /*when(addNewQuestion1) {
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion2) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion3) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion4) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion5) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion6) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion7) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion8) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion9) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
                 }
 
                 when(addNewQuestion10) {
-                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
-                }
+                    1 -> Toast.makeText(this, "", Toast.LENGTH_SHORT)//.show()
+                }*/
 
                 val intent = Intent(this, AdminHomeActivity::class.java)
                 startActivity(intent)
