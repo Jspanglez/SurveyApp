@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/editTextQ1"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/teal_700"
@@ -30,7 +30,7 @@
     <EditText
         android:id="@+id/editTextQ2"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -49,7 +49,7 @@
     <EditText
         android:id="@+id/editTextQ10"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -68,7 +68,7 @@
     <EditText
         android:id="@+id/editTextQ9"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -87,7 +87,7 @@
     <EditText
         android:id="@+id/editTextQ4"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -106,7 +106,7 @@
     <EditText
         android:id="@+id/editTextQ8"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -125,7 +125,7 @@
     <EditText
         android:id="@+id/editTextQ7"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -144,7 +144,7 @@
     <EditText
         android:id="@+id/editTextQ6"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -163,7 +163,7 @@
     <EditText
         android:id="@+id/editTextQ5"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -182,7 +182,7 @@
     <EditText
         android:id="@+id/editTextQ3"
         android:layout_width="386dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -199,7 +199,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextQ2" />
 
     <Button
-        android:id="@+id/btnCreateSurvey"
+        android:id="@+id/btnUpdateSurvey"
         android:layout_width="175dp"
         android:layout_height="64dp"
         android:fontFamily="sans-serif-medium"
@@ -215,7 +215,7 @@
         app:layout_constraintVertical_bias="0.502" />
 
     <Button
-        android:id="@+id/btnGoBack"
+        android:id="@+id/btnPrevious"
         android:layout_width="175dp"
         android:layout_height="64dp"
         android:fontFamily="sans-serif-medium"

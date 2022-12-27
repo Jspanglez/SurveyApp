@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".StudentHomeActivity">
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="125dp"
-        android:layout_height="49dp"
-        android:text="Surveys"
+        android:layout_width="319dp"
+        android:layout_height="84dp"
+        android:text="Please select a survey"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
