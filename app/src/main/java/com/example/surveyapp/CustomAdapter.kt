@@ -1,7 +1,6 @@
 package com.example.surveyapp
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,10 +38,9 @@ class CustomAdapter(private val appContext: Context, private val surveyTitles: A
         sDate.text = startDateList[position]
         eDate.text = endDateList[position]
 
+        //val adminHome = AdminHomeActivity(titles)
+
         return view
     }
-
-    //Create function for the intent
-    //val intent = Intent(this, EditSurveyActivity::class.java)
 
 }
