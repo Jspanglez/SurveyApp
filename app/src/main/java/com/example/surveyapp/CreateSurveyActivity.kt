@@ -17,13 +17,7 @@ class CreateSurveyActivity : AppCompatActivity() {
         val moduleCodes = arrayOf("CTEC3911", "CTEC3905", "CTEC3906", "IMAT3423", "CTEC3451")
         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, moduleCodes)
         spinner.adapter = arrayAdapter
-        //spinner = getSpinner(spinner)
     }
-
-    /*fun getSpinner(spinner: Spinner): Spinner {
-        val newSpinner = spinner
-        return newSpinner
-    }*/
 
     fun nextBtn(view: View) {
         val mySpinner = findViewById<Spinner>(R.id.spinner)
