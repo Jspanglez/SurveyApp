@@ -1,12 +1,10 @@
 package com.example.surveyapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import com.example.surveyapp.Model.DataBaseHelper
 import com.example.surveyapp.Model.Questions
@@ -27,16 +25,16 @@ class CreateQuestionsActivity : AppCompatActivity() {
         val surveyTitle = intent.getStringExtra("Survey Name").toString()
         val startDate = intent.getStringExtra("Start").toString()
         val endDate = intent.getStringExtra("End").toString()
-        val question1 = findViewById<EditText>(R.id.editTextQ1).text.toString()
-        val question2 = findViewById<EditText>(R.id.editTextQ2).text.toString()
-        val question3 = findViewById<EditText>(R.id.editTextQ3).text.toString()
-        val question4 = findViewById<EditText>(R.id.editTextQ4).text.toString()
-        val question5 = findViewById<EditText>(R.id.editTextQ5).text.toString()
-        val question6 = findViewById<EditText>(R.id.editTextQ6).text.toString()
-        val question7 = findViewById<EditText>(R.id.editTextQ7).text.toString()
-        val question8 = findViewById<EditText>(R.id.editTextQ8).text.toString()
-        val question9 = findViewById<EditText>(R.id.editTextQ9).text.toString()
-        val question10 = findViewById<EditText>(R.id.editTextQ10).text.toString()
+        val question1 = findViewById<EditText>(R.id.editTextUpdateQ1).text.toString()
+        val question2 = findViewById<EditText>(R.id.editTextUpdateQ2).text.toString()
+        val question3 = findViewById<EditText>(R.id.editTextUpdateQ3).text.toString()
+        val question4 = findViewById<EditText>(R.id.editTextUpdateQ4).text.toString()
+        val question5 = findViewById<EditText>(R.id.editTextUpdateQ5).text.toString()
+        val question6 = findViewById<EditText>(R.id.editTextUpdateQ6).text.toString()
+        val question7 = findViewById<EditText>(R.id.editTextUpdateQ7).text.toString()
+        val question8 = findViewById<EditText>(R.id.editTextUpdateQ8).text.toString()
+        val question9 = findViewById<EditText>(R.id.editTextUpdateQ9).text.toString()
+        val question10 = findViewById<EditText>(R.id.editTextUpdateQ10).text.toString()
 
         when {
 
