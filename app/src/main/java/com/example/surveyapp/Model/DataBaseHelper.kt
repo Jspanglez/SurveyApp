@@ -156,6 +156,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
 
     fun getAdmin(user: User): Int {
         val db: SQLiteDatabase
+        val username = user.username.lowercase()
         val isAdmin = user.isAdmin
 
         try {
@@ -165,14 +166,15 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
             return -2
         }
 
-        val sqlStatement = "SELECT * FROM $userTable WHERE $Column_isAdmin = 1"
+        val sqlStatement = "SELECT $Column_isAdmin FROM $userTable WHERE $Column_Username = '${user.username}'"
         val cursor: Cursor = db.rawQuery(sqlStatement, null)
 
         if(cursor.moveToFirst()) {
             // An admin is found
+            val n = cursor.getInt(0)
             cursor.close()
             db.close()
-            return 1
+            return n
         }
 
         cursor.close()
@@ -199,7 +201,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
             val n = cursor.getInt(0)
             cursor.close()
             db.close()
-            return 2
+            return n
         }
 
         cursor.close()
@@ -267,8 +269,6 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
 
     }
 
-
-
     fun getEndDate(): ArrayList<String> {
         val db: SQLiteDatabase = this.readableDatabase
         val endList = ArrayList<String>()
@@ -305,5 +305,14 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         else
             return 1 //Add the question
     }
+
+    /*fun updateSurvey(survey: Survey) : Boolean {
+
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+        cv.put(Column_StartDate, survey.startDate)
+        cv.put(Column_EndDate, survey.endDate)
+    }*/
 }
 
