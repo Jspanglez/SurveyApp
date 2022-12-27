@@ -1,5 +1,6 @@
 package com.example.surveyapp.Model
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -23,7 +24,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
     // Survey Table
     private val surveyTable = "Surveys"
     private val Column_SurveyID = "SurveyID"
-    private val Column_SurveyTitle = "surveyTitle"
+    private val Column_SurveyTitle = "title"
     private val Column_StartDate = "startDate"
     private val Column_EndDate = "endDate"
 
@@ -31,6 +32,7 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
     private val questionTable = "Questions"
     private val Column_QuestionID = "QuestionID"
     private val Column_QuestionText = "questionText"
+    private val Column_ForeignSurveyID = "SurveyID"
 
     // Answers Table
     private val answerTable = "Answers"
@@ -53,8 +55,8 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
 
             val sqlCreateStatementQuestions: String =
                 "CREATE TABLE IF NOT EXISTS" + questionTable + " ( " + Column_QuestionID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_QuestionText + " TEXT, " + Column_SurveyID +
-                " INTEGER FOREIGN KEY )"
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + Column_QuestionText + " TEXT, " + Column_ForeignSurveyID +
+                    " INTEGER, " + "FOREIGN KEY ("+Column_ForeignSurveyID+") REFERENCES "+surveyTable+"("+Column_SurveyID+") "
 
             db?.execSQL(sqlCreateStatementUser)
             db?.execSQL(sqlCreateStatementSurvey)
@@ -168,7 +170,6 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
 
         if(cursor.moveToFirst()) {
             // An admin is found
-            //val n = cursor.getInt(0)
             cursor.close()
             db.close()
             return 1
@@ -225,12 +226,75 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
             return 1 //Add the survey
     }
 
+    fun getSurveyTitle(): ArrayList<String> {
+        val db: SQLiteDatabase = this.readableDatabase
+        val surveyList = ArrayList<String>()
+
+        val sqlStatement = "SELECT $Column_SurveyTitle FROM $surveyTable"
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if(cursor.moveToFirst())
+            do {
+                val title: String = cursor.getString(0)
+
+                surveyList.add(title)
+            }while(cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return surveyList
+    }
+
+    fun getStartDate(): ArrayList<String> {
+        val db: SQLiteDatabase = this.readableDatabase
+        val startList = ArrayList<String>()
+
+        val sqlStatement = "SELECT $Column_StartDate FROM $surveyTable"
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if(cursor.moveToFirst())
+            do {
+                val start: String = cursor.getString(0)
+
+                startList.add(start)
+            }while(cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return startList
+
+    }
+
+
+
+    fun getEndDate(): ArrayList<String> {
+        val db: SQLiteDatabase = this.readableDatabase
+        val endList = ArrayList<String>()
+
+        val sqlStatement = "SELECT $Column_EndDate FROM $surveyTable"
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if(cursor.moveToFirst())
+            do {
+                val end: String = cursor.getString(0)
+
+                endList.add(end)
+            }while(cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return endList
+    }
+
     fun addQuestions(questions: Questions): Int {
         val db: SQLiteDatabase = this.writableDatabase
         val cv: ContentValues = ContentValues()
 
         cv.put(Column_QuestionText, questions.questionText)
-        cv.put(Column_SurveyID, questions.SurveyID)
+        cv.put(Column_ForeignSurveyID, questions.SurveyID)
 
         val success = db.insert(questionTable, null, cv)
 
@@ -241,6 +305,5 @@ class DataBaseHelper (context: Context) : SQLiteOpenHelper(context, DataBaseName
         else
             return 1 //Add the question
     }
-
 }
 
