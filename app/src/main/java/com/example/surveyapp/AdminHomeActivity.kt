@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveyapp.Model.DataBaseHelper
+import com.example.surveyapp.Model.Survey
 
 class AdminHomeActivity() : AppCompatActivity() {
 
@@ -16,22 +16,13 @@ class AdminHomeActivity() : AppCompatActivity() {
         setContentView(R.layout.activity_admin_home)
 
         val myDatabase = DataBaseHelper(this)
+        val surveys = myDatabase.getSurvey()
 
-        var surveyTitles = myDatabase.getSurveyTitle()
-        var startDateList = myDatabase.getStartDate()
-        var endDateList = myDatabase.getEndDate()
 
-        val edit = findViewById<Button>(R.id.buttonEdit)
-        edit.isEnabled = false
-
-        var surveyList = findViewById<ListView>(R.id.myListView)
-
-        surveyList.setOnItemClickListener { parent, view, position, id ->
-            edit.isEnabled = true
-        }
+        val surveyList = findViewById<ListView>(R.id.myListView)
 
         //Create the adapter
-        val customAdapter = CustomAdapter(applicationContext, surveyTitles, startDateList, endDateList)
+        val customAdapter = CustomAdapter(applicationContext, surveys)
         surveyList!!.adapter = customAdapter
     }
 
@@ -40,17 +31,9 @@ class AdminHomeActivity() : AppCompatActivity() {
         startActivity(createIntent)
     }
 
-    fun editBtn(view: View) {
-        var list = findViewById<ListView>(R.id.myListView)
-
-        val selected = list.setOnItemClickListener { parent, view, position, id ->
-            list.getItemAtPosition(0)
-        }
-
-        val intent = Intent(this, EditSurveyActivity::class.java)
-        intent.putExtra("Selected Item", selected.toString())
+    fun back(view: View) {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-
 
 }

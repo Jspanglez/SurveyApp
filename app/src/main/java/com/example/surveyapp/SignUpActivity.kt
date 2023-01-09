@@ -17,18 +17,15 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
     }
 
+    fun prev(view: View) {
+        finish()
+    }
+
     fun onClickButton(view: View) {
         val username = findViewById<EditText>(R.id.editTextNewUsername).text.toString()
         val password = findViewById<EditText>(R.id.editTextNewPassword).text.toString()
         val rePassword = findViewById<EditText>(R.id.editTextRePassword).text.toString()
-        var admin: Boolean
-        val intentStudent = Intent(this, StudentHomeActivity::class.java).apply {
-        }
-        val intentAdmin = Intent(this, AdminHomeActivity::class.java).apply {
-        }
-
-        val adminCheck = findViewById<CheckBox>(R.id.checkBoxAdmin)
-        admin = adminCheck.isChecked
+        var admin: Boolean = false
 
         when {
             username.isNullOrBlank() -> Toast.makeText(this, "Please enter a username.", Toast.LENGTH_SHORT).show()
@@ -44,6 +41,10 @@ class SignUpActivity : AppCompatActivity() {
 
                 when(result) {
                     1 -> {
+                        Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    /*1 -> {
                         if (admin) {
                             Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
                             startActivity(intentAdmin)
@@ -53,7 +54,7 @@ class SignUpActivity : AppCompatActivity() {
                             Toast.makeText(this, "$username has successfully made an account.", Toast.LENGTH_SHORT).show()
                             startActivity(intentStudent)
                         }
-                    }
+                    }*/
                     -3 -> Toast.makeText(this, "The username '$username' already exists.", Toast.LENGTH_SHORT).show()
                 }
             }

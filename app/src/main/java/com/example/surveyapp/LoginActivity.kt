@@ -17,6 +17,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
+    fun backToHome(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     fun loginButton(view: View) {
 
         val username = findViewById<EditText>(R.id.editTextUsername).text.toString()
@@ -34,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
                 val myDatabase = DataBaseHelper(this)
                 val result = myDatabase.getUser(User(-1, username, password, false))
                 val admin = myDatabase.getAdmin(User(-1, username, password, false))
-                val student = myDatabase.getStudent(User(-1, username, password, false))
 
                 when(result) {
                     -1 -> Toast.makeText(this, "Username or password is incorrect.", Toast.LENGTH_SHORT).show()
@@ -43,12 +47,12 @@ class LoginActivity : AppCompatActivity() {
 
                         when(admin) {
                             1 -> {
-                                Toast.makeText(this, "Admin has successfully logged in.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "$username has successfully logged in.", Toast.LENGTH_SHORT).show()
                                 startActivity(intentAdmin)
                             }
 
                             0 -> {
-                                Toast.makeText(this, "Student has successfully logged in.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "$username has successfully logged in.", Toast.LENGTH_SHORT).show()
                                 startActivity(intentStudent)
                             }
 

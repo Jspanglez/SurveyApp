@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/purple_700"
     tools:context=".AdminHomeActivity">
 
 
@@ -13,9 +13,10 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:text="Current Surveys"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -24,15 +25,16 @@
         app:layout_constraintVertical_bias="0.024" />
 
     <Button
-        android:id="@+id/buttonEdit"
+        android:id="@+id/buttonBack"
         android:layout_width="175dp"
         android:layout_height="64dp"
         android:fontFamily="sans-serif-medium"
-        android:onClick="editBtn"
-        android:text="Edit Survey"
+        android:onClick="createBtn"
+        android:text="Create Survey"
         android:textColor="?android:attr/textColorPrimaryInverseDisableOnly"
         android:textSize="16sp"
-        app:backgroundTint="@color/blue"
+        android:textStyle="bold"
+        app:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
@@ -45,21 +47,22 @@
         android:layout_width="175dp"
         android:layout_height="64dp"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@android:color/holo_orange_dark"
         android:fontFamily="sans-serif-medium"
-        android:onClick="createBtn"
-        android:text="Create Survey"
-        android:textSize="16sp"
+        android:onClick="back"
+        android:text="Back"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBack"
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.935" />
 
+    <!--android:choiceMode="singleChoice"-->
+    <!--android:listSelector="@android:color/darker_gray"-->
     <ListView
-        android:choiceMode="singleChoice"
-        android:listSelector="@android:color/darker_gray"
         android:id="@+id/myListView"
         android:layout_width="0dp"
         android:layout_height="447dp"
@@ -71,41 +74,44 @@
 
     <TextView
         android:id="@+id/textViewSDate"
-        android:layout_width="122dp"
+        android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Start Date"
-        android:textColor="@color/light_gray"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewEDate"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toEndOf="@+id/textViewModule"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textViewEDate"
-        android:layout_width="122dp"
+        android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="144dp"
         android:gravity="center"
         android:text="End Date"
-        android:textColor="@color/light_gray"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textViewModule"
-        android:layout_width="122dp"
+        android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Module"
-        android:textColor="@color/light_gray"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

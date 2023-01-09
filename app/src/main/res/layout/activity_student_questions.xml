@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700"
+    tools:context=".StudentQuestionsActivity">
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:onClick="submit"
+        android:text="Submit"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btnPrevQ"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="120dp"
+
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:onClick="backButton"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginBottom="42dp"
+
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:onClick="homeButton"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnNextQ"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:onClick="nextButton"
+        android:text="Next"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewCurrentQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupAnswers2"
+        android:layout_width="335dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true">
+
+        <RadioButton
+            android:id="@+id/radioButtonSA2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/holo_orange_dark"
+            android:text="Strongly Agree 😄"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonA2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/holo_orange_dark"
+            android:text="Agree 🙂"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonN2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/holo_orange_dark"
+            android:text="Neutral 😐"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonD2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/holo_orange_dark"
+            android:text="Disagree 🙁 "
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSD2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/holo_orange_dark"
+            android:text="Strongly Disagree 😡"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+</RelativeLayout>

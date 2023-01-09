@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/purple_700"
     tools:context=".CreateSurveyActivity">
 
     <TextView
@@ -99,7 +99,7 @@
         android:id="@+id/button"
         android:layout_width="175dp"
         android:layout_height="64dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@android:color/holo_orange_dark"
         android:onClick="nextBtn"
         android:text="Next"
         android:textSize="24sp"
@@ -114,7 +114,7 @@
         android:id="@+id/button3"
         android:layout_width="175dp"
         android:layout_height="64dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@android:color/holo_orange_dark"
         android:onClick="backBtn"
         android:text="Back"
         android:textSize="24sp"

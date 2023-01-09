@@ -1,17 +1,32 @@
 package com.example.surveyapp
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class CreateSurveyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_survey)
+
+        val startDate = findViewById<EditText>(R.id.editTextStartDate)
+        val endDate = findViewById<EditText>(R.id.editTextEndDate)
+
+        //From stackoverflow
+        val today = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        val tomorrow = LocalDate.now().plusDays(1)
+        val formattedTomorrow = tomorrow.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        startDate.setText(today)
+        endDate.setText(formattedTomorrow)
 
         var spinner = findViewById<Spinner>(R.id.spinner)
         val moduleCodes = arrayOf("CTEC3911", "CTEC3905", "CTEC3906", "IMAT3423", "CTEC3451")
@@ -28,14 +43,27 @@ class CreateSurveyActivity : AppCompatActivity() {
         intent.putExtra("Survey Name", surveyName)
         intent.putExtra("Start", startDate)
         intent.putExtra("End", endDate)
-        when {
-            /*startDate.isNullOrBlank() -> Toast.makeText(this, "Please enter a start date.", Toast.LENGTH_SHORT).show()
-            endDate.isNullOrBlank() -> Toast.makeText(this, "Please enter an end date.", Toast.LENGTH_SHORT).show()
-            !(startDate[1].equals("/")) || !(startDate[2].equals("/")) -> Toast.makeText(this, "Please enter a valid start date. (1)", Toast.LENGTH_SHORT).show()
-            !(startDate[3].equals("/") || startDate[4].equals("/") || startDate[5].equals("/"))  -> Toast.makeText(this, "Please enter a valid start date. (2)", Toast.LENGTH_SHORT).show()
 
-            !(endDate[1].equals("/") || endDate[2].equals("/")) && !(endDate[3].equals("/") || endDate[4].equals("/") ||
-                    endDate[5].equals("/"))  -> Toast.makeText(this, "Please enter a valid end date.", Toast.LENGTH_SHORT).show()*/
+        val format = SimpleDateFormat("dd/MM/yyyy")
+
+        try {
+            format.parse(startDate)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Please enter a valid start date.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        try {
+            format.parse(endDate)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Please enter a valid end date.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        when {
+            startDate.isNullOrBlank() -> Toast.makeText(this, "Please enter a start date.", Toast.LENGTH_SHORT).show()
+            endDate.isNullOrBlank() -> Toast.makeText(this, "Please enter an end date.", Toast.LENGTH_SHORT).show()
+            format.parse(endDate) < format.parse(startDate) -> Toast.makeText(this, "End date must be after start date.", Toast.LENGTH_SHORT).show()
 
             else -> {
                 startActivity(intent)
@@ -44,7 +72,6 @@ class CreateSurveyActivity : AppCompatActivity() {
     }
 
     fun backBtn(view: View) {
-        val intentBack = Intent(this, AdminHomeActivity::class.java)
-        startActivity(intentBack)
+        finish()
     }
 }
