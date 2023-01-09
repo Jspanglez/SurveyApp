@@ -1,4 +1,6 @@
 # SurveyApp
-Login should send students to Student Home and admins to Admin Home (if statement in the When/Else statement)
+Questions need to have a foreign key assigned to them
 
-Admin checkbox in the Sign Up activity needs functionality
+Admin should be able to edit a survey.
+
+The selected infromation from the admin's listview should appear in the edit survey activity.
